@@ -21,7 +21,6 @@ public class Room {
     @Column(name="BED_INFO")
     private String bedInfo;
 
-
     public long getRoomId() {
         return this.roomId;
     }
