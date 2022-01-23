@@ -11,7 +11,6 @@ public class RoomReservation {
     private String lastName;
     private Date date;
 
-
     public long getRoomId() {
         return this.roomId;
     }
