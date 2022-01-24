@@ -1,10 +1,12 @@
 package com.xuhuang.lil.learningspring.business.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.xuhuang.lil.learningspring.business.domain.RoomReservation;
 import com.xuhuang.lil.learningspring.data.entity.Guest;
@@ -52,9 +54,13 @@ public class ReservationService {
         });
 
         List<RoomReservation> roomReservations = new ArrayList<>();
-        for (Long id: roomReservationMap.keySet()) {
-            roomReservations.add(roomReservationMap.get(id));
+        for (Map.Entry<Long, RoomReservation> entry: roomReservationMap.entrySet()) {
+            roomReservations.add(entry.getValue());
         }
+
+        roomReservations.sort((o1, o2) -> Objects.equals(o1.getRoomName(), o2.getRoomName())
+            ? o1.getRoomNumber().compareTo(o2.getRoomNumber())
+            : o1.getRoomName().compareTo(o2.getRoomName()));
         
         return roomReservations;
     }
